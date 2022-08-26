@@ -16,8 +16,7 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.circleci.samples.todoapp">
+    xmlns:tools="http://schemas.android.com/tools">
 
 <!--    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"-->
 <!--        tools:ignore="ScopedStorage" />-->
@@ -34,7 +33,8 @@
         <activity
             android:name=".tasks.TasksActivity"
             android:windowSoftInputMode="adjustResize"
-            android:theme="@style/AppTheme.OverlapSystemBar">
+            android:theme="@style/AppTheme.OverlapSystemBar"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

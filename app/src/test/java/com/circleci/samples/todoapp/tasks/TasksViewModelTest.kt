@@ -81,38 +81,4 @@ class TasksViewModelTest {
         // Then the "Add task" action is visible
         assertThat(tasksViewModel.tasksAddViewVisible.getOrAwaitValue(), `is`(true))
     }
-
-    @Test
-    fun completeTask_dataAndSnackbarUpdated() {
-        // With a repository that has an active task
-        val task = Task("Title", "Description")
-        tasksRepository.addTasks(task)
-
-        // Complete task
-        tasksViewModel.completeTask(task, true)
-
-        // Verify the task is completed
-        assertThat(tasksRepository.tasksServiceData[task.id]?.isCompleted, `is`(true))
-
-        // The snackbar is updated
-        val snackbarText: Event<Int> =  tasksViewModel.snackbarText.getOrAwaitValue()
-        assertThat(snackbarText.getContentIfNotHandled(), `is`(R.string.task_marked_complete))
-    }
-
-    @Test
-    fun activateTask_dataAndSnackbarUpdated() {
-        // With a repository that has a completed task
-        val task = Task("Title", "Description", true)
-        tasksRepository.addTasks(task)
-
-        // Activate task
-        tasksViewModel.completeTask(task, false)
-
-        // Verify the task is active
-        assertThat(tasksRepository.tasksServiceData[task.id]?.isActive, `is`(true))
-
-        // The snackbar is updated
-        val snackbarText: Event<Int> =  tasksViewModel.snackbarText.getOrAwaitValue()
-        assertThat(snackbarText.getContentIfNotHandled(), `is`(R.string.task_marked_active))
-    }
 }
