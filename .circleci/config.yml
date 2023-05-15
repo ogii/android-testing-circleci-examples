@@ -12,14 +12,14 @@ jobs:
       tag: 2023.04.1
     steps:
       - checkout
-      - run: chmod 777 ./gradlew 
-    #   - run: echo 'export VERSION="$(sed -n '11p' ./CortexDecoderLibrary/build.gradle)"' >> "$BASH_ENV"
-      - run:
-          name: Download Dependencies
-          command: ./gradlew androidDependencies --no-daemon
-      - run:
-          name: Build
-          command: ./gradlew build
+#       - run: chmod 777 ./gradlew 
+#     #   - run: echo 'export VERSION="$(sed -n '11p' ./CortexDecoderLibrary/build.gradle)"' >> "$BASH_ENV"
+#       - run:
+#           name: Download Dependencies
+#           command: ./gradlew androidDependencies --no-daemon
+#       - run:
+#           name: Build
+#           command: ./gradlew build
       #- android/restore-gradle-cache
       #- android/restore-build-cache
       - android/create-avd:
