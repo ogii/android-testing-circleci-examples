@@ -23,7 +23,9 @@ jobs:
           restore-gradle-cache-prefix: v1a
       - run: chmod 777 ./test.sh
       - android/run-tests:
-          test-command: test_results=$(adb shell am instrument -w com.circleci.samples.todoapp/androidx.test.runner.AndroidJUnitRunner) && if echo "$test_results" | grep -q 'attempt'; then echo "exit 1"; else echo "exit 0";
+          test-command: |
+            test_results=$(adb shell am instrument -w com.circleci.samples.todoapp/androidx.test.runner.AndroidJUnitRunner)
+            if echo "$test_results" | grep -q 'attempt'; then echo "exit 1"; else echo "exit 0";
       - android/save-gradle-cache
       - android/save-build-cache
       - run: cd ./project/app/build/test-results && ls -al
