@@ -12,6 +12,7 @@ jobs:
       tag: 2023.04.1
     steps:
       - checkout
+      - android/create-avd:
           avd-name: myavd
           system-image: system-images;android-29;default;x86
           install: true
