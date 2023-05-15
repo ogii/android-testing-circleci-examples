@@ -12,8 +12,8 @@ jobs:
       tag: 2023.04.1
     steps:
       - checkout
-      - android/restore-gradle-cache
-      - android/restore-build-cache
+      #- android/restore-gradle-cache
+      #- android/restore-build-cache
       - android/create-avd:
           avd-name: myavd
           system-image: system-images;android-29;default;x86
@@ -22,12 +22,8 @@ jobs:
           avd-name: myavd
           no-window: true
           restore-gradle-cache-prefix: v1a
-      - run:
-          name: Get running device name 
-          command: adb devices
       - android/run-tests:
           test-command: adb shell am instrument -w com.circleci.samples.todoapp/androidx.test.runner.AndroidJUnitRunner
-          #./gradlew testDebug
       - android/save-gradle-cache
       - android/save-build-cache
       - run: cd ./project/app/build/test-results && ls -al
