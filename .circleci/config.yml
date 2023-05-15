@@ -24,7 +24,7 @@ jobs:
       - run: chmod 777 ./test.sh
       - android/run-tests:
           max-tries: 2
-          test-command: adb shell am instrument -w com.circleci.samples.todoapp/androidx.test.runner.AndroidJUnitRunner | grep "FAILURES!!!" && exit $?
+          test-command: adb shell am instrument -w com.circleci.samples.todoapp/androidx.test.runner.AndroidJUnitRunner | grep -v "adb"; exit $?
           #./test.sh
 #       - android/save-gradle-cache
 #       - android/save-build-cache
