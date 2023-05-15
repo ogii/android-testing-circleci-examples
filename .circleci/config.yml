@@ -18,6 +18,7 @@ jobs:
           test-command: ./gradlew testDebug
       - android/save-gradle-cache
       - android/save-build-cache
+      - run: cd ./project/app/build/test-results && ls -al
       - run:
           name: Save test results
           command: |
