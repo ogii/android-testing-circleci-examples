@@ -22,7 +22,9 @@ jobs:
           post-emulator-launch-assemble-command: ""
           restore-gradle-cache-prefix: v1a
       - android/run-tests:
-          test-command: adb shell am instrument -w com.circleci.samples.todoapp/androidx.test.runner.AndroidJUnitRunner 2>&1 | grep "FAILURES!!!"
+          test-command: |
+            adb shell am instrument -w com.circleci.samples.todoapp/androidx.test.runner.AndroidJUnitRunner
+            echo "HEY THERE"
       - android/save-gradle-cache
       - android/save-build-cache
       - run: cd ./project/app/build/test-results && ls -al
