@@ -12,17 +12,6 @@ jobs:
       tag: 2023.04.1
     steps:
       - checkout
-#       - run: chmod 777 ./gradlew 
-#     #   - run: echo 'export VERSION="$(sed -n '11p' ./CortexDecoderLibrary/build.gradle)"' >> "$BASH_ENV"
-#       - run:
-#           name: Download Dependencies
-#           command: ./gradlew androidDependencies --no-daemon
-#       - run:
-#           name: Build
-#           command: ./gradlew build
-      #- android/restore-gradle-cache
-      #- android/restore-build-cache
-      - android/create-avd:
           avd-name: myavd
           system-image: system-images;android-29;default;x86
           install: true
@@ -32,7 +21,7 @@ jobs:
           post-emulator-launch-assemble-command: ""
           restore-gradle-cache-prefix: v1a
       - android/run-tests:
-          test-command: adb shell am instrument -w com.circleci.samples.todoapp/androidx.test.runner.AndroidJUnitRunner
+          test-command: adb shell am instrument -w com.circleci.samples.todoapp/androidx.test.runner.AndroidJUnitRunner 2>&1
       - android/save-gradle-cache
       - android/save-build-cache
       - run: cd ./project/app/build/test-results && ls -al
